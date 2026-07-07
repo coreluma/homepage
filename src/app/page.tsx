@@ -1,14 +1,8 @@
-import { Header } from "@/components/header";
-import { HeroSection } from "@/components/hero-section";
+import { HeroDesignSwitcher } from "@/components/hero-design-switcher";
+import { ProductsSection } from "@/components/products-section";
 import { SectionShell } from "@/components/ui/section-shell";
 
 const sections = [
-  {
-    id: "products",
-    eyebrow: "Selected products",
-    title: "Products built with purpose.",
-    description: "The products will live here as the main characters of Core Luma.",
-  },
   {
     id: "about",
     eyebrow: "Who we are",
@@ -44,8 +38,8 @@ const sections = [
 export default function Home() {
   return (
     <main className="min-h-screen overflow-hidden">
-      <Header />
-      <HeroSection />
+      <HeroDesignSwitcher />
+      <ProductsSection />
 
       {sections.map((section) => (
         <SectionShell key={section.id} {...section} />
