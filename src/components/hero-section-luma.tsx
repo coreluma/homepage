@@ -33,6 +33,24 @@ export function HeroSectionLuma() {
     <section id="top" className="luma-hero relative isolate min-h-[100svh] overflow-hidden text-[#17386a]">
       <LumaHeader />
       <div className="luma-clouds pointer-events-none absolute inset-0" aria-hidden="true" />
+      <Image
+        src="/images/luma-side-cloud-left.png"
+        alt=""
+        width={626}
+        height={317}
+        priority
+        className="luma-side-cloud luma-side-cloud-left pointer-events-none absolute h-auto"
+        aria-hidden="true"
+      />
+      <Image
+        src="/images/luma-side-cloud-right.png"
+        alt=""
+        width={698}
+        height={305}
+        priority
+        className="luma-side-cloud luma-side-cloud-right pointer-events-none absolute h-auto"
+        aria-hidden="true"
+      />
       <span className="luma-speck left-[28%] top-[13%] size-5" aria-hidden="true" />
       <span className="luma-speck right-[23%] top-[11%] size-8" aria-hidden="true" />
       <span className="luma-speck right-[12%] top-[43%] size-5" aria-hidden="true" />

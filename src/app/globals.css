@@ -165,6 +165,29 @@ button {
   mask-image: linear-gradient(to bottom, black 0%, rgba(0,0,0,0.75) 24%, black 58%, rgba(0,0,0,0.82) 100%);
 }
 
+.luma-side-cloud {
+  z-index: 3;
+  width: clamp(22rem, 33vw, 36rem);
+  max-width: none;
+  opacity: 0.82;
+  filter:
+    drop-shadow(0 18px 30px rgba(111, 167, 234, 0.18))
+    blur(0.05px);
+  mix-blend-mode: screen;
+}
+
+.luma-side-cloud-left {
+  top: clamp(4.5rem, 7.4vw, 6rem);
+  left: max(-8rem, -4.8vw);
+  transform: rotate(-0.8deg);
+}
+
+.luma-side-cloud-right {
+  top: clamp(4.8rem, 7.6vw, 6.2rem);
+  right: max(-8rem, -4.8vw);
+  transform: rotate(0.8deg);
+}
+
 .luma-mark {
   display: inline-flex;
   align-items: center;
@@ -177,6 +200,8 @@ button {
 
 .luma-title {
   color: rgba(255, 255, 255, 0.93);
+  font-family: var(--font-dm-serif-text), Georgia, "Times New Roman", serif;
+  font-weight: 400;
   text-shadow:
     0 2px 0 rgba(255,255,255,0.7),
     0 12px 25px rgba(40, 94, 180, 0.22),
@@ -206,6 +231,18 @@ button {
 
 @media (max-width: 767px) {
   .luma-clouds { background-size: auto 100%, auto 100%; }
+  .luma-side-cloud {
+    width: 20rem;
+    opacity: 0.64;
+  }
+  .luma-side-cloud-left {
+    top: 7rem;
+    left: -10rem;
+  }
+  .luma-side-cloud-right {
+    top: 7.4rem;
+    right: -10.5rem;
+  }
   .luma-bottom-clouds {
     bottom: -4vw;
     width: 150%;

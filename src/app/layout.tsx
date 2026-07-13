@@ -1,5 +1,12 @@
 import type { Metadata } from "next";
+import localFont from "next/font/local";
 import "./globals.css";
+
+const dmSerifText = localFont({
+  src: "../../public/fonts/dm-serif-text-regular.ttf",
+  display: "swap",
+  variable: "--font-dm-serif-text",
+});
 
 export const metadata: Metadata = {
   title: "Core Luma — Product Studio",
@@ -12,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko" className="h-full antialiased">
+    <html lang="ko" className={`${dmSerifText.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col">{children}</body>
     </html>
   );
