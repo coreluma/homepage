@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef } from "react";
 
 type TitleStyle = React.CSSProperties & {
@@ -95,13 +96,31 @@ export function InteractiveMeadowTitle() {
   return (
     <div
       ref={rootRef}
-      className="interactive-meadow-title"
+      className="interactive-meadow-title min-h-auto min-w-full px-0 pt-18 pb-1 md:min-h-[clamp(11rem,20vw,18rem)] md:min-w-[min(92vw,58rem)] md:px-10 md:pt-14 md:pb-[2.4rem]"
       style={initialStyle}
     >
-      <span className="interactive-meadow-title-glow" aria-hidden="true" />
-      <span className="interactive-meadow-title-ray" aria-hidden="true" />
-      <h1 className="luma-title meadow-title text-[clamp(5rem,10vw,9.6rem)] leading-[0.82] font-normal tracking-[-0.065em]">
-        Core Luma
+      <span className="interactive-meadow-title-glow h-36 w-[110%] blur-[18px] md:h-[clamp(9rem,19vw,15.5rem)] md:w-[min(82vw,54rem)] md:blur-[22px]" aria-hidden="true" />
+      <span className="interactive-meadow-title-ray h-18 w-[92%] blur-[14px] md:h-[clamp(5rem,9vw,8rem)] md:w-[min(74vw,47rem)] md:blur-[16px]" aria-hidden="true" />
+      <h1 className="luma-title meadow-title h-[clamp(9rem,44vw,11.5rem)] w-[min(82vw,27rem)] font-normal md:h-[clamp(8rem,18vw,16rem)] md:w-[min(72vw,58rem)]">
+        <Image
+          src="/images/logo/coreluma-glitter-logo.svg"
+          alt=""
+          width={1700}
+          height={1700}
+          priority
+          className="pointer-events-none absolute top-1/2 left-1/2 w-full max-w-none -translate-x-1/2 -translate-y-1/2 [filter:drop-shadow(0_3px_0_rgba(255,255,255,0.55))_drop-shadow(0_16px_28px_rgba(44,96,164,0.18))_drop-shadow(0_0_20px_rgba(255,255,255,0.18))] md:hidden"
+          aria-hidden="true"
+        />
+        <Image
+          src="/images/logo/coreluma-glitter-logo-flat.svg"
+          alt=""
+          width={1700}
+          height={1700}
+          priority
+          className="pointer-events-none absolute top-1/2 left-1/2 hidden w-full max-w-none -translate-x-1/2 -translate-y-1/2 [filter:drop-shadow(0_5px_0_#dfecf9)_drop-shadow(0_16px_28px_rgba(44,96,164,0.18))_drop-shadow(0_0_20px_rgba(255,255,255,0.18))] md:block"
+          aria-hidden="true"
+        />
+        <span className="sr-only">Core Luma</span>
       </h1>
     </div>
   );
