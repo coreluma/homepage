@@ -97,7 +97,7 @@ export function HeroSectionMeadow() {
           width={1536}
           height={1024}
           priority
-          className="meadow-bottom-clouds absolute inset-x-0 top-[calc(100svh-15rem)] z-[3] h-auto w-[170%] max-w-none -translate-x-[20%] md:top-auto md:bottom-[clamp(5.8rem,11vw,9.5rem)] md:w-[112%] md:-translate-x-[5.5%] lg:bottom-0"
+          className="meadow-bottom-clouds absolute inset-x-0 bottom-0 z-[3] h-auto w-[170%] max-w-none -translate-x-[20%] md:bottom-[clamp(5.8rem,11vw,9.5rem)] md:w-[112%] md:-translate-x-[5.5%] lg:bottom-0"
         />
         <Image
           src="/images/dreamcore-grass.png"
@@ -105,31 +105,33 @@ export function HeroSectionMeadow() {
           width={1746}
           height={901}
           priority
-          className="meadow-grass absolute inset-x-0 top-[calc(100svh-8.5rem)] z-[5] h-auto w-[180%] max-w-none -translate-x-[22%] md:top-auto md:bottom-[-4.5vw] md:w-full md:translate-x-0 lg:bottom-[-7vw]"
+          className="meadow-grass absolute inset-x-0 bottom-0 z-[5] h-auto w-[180%] max-w-none -translate-x-[22%] md:bottom-[-4.5vw] md:w-full md:translate-x-0 lg:bottom-[-7vw]"
         />
       </div>
 
       <Container className="meadow-content relative z-10 flex min-h-[100svh] flex-col items-center pt-22 pb-5 md:pt-28 md:pb-10 lg:pt-24">
-        <div className="meadow-intro flex min-h-[clamp(34rem,78svh,46rem)] w-full flex-none flex-col items-center justify-center pt-4 pb-[clamp(5rem,14svh,8rem)] text-center md:min-h-0 md:w-auto md:flex-1 md:translate-y-[clamp(0.6rem,4.2vh,2.6rem)] md:p-0">
+        <div className="meadow-intro flex min-h-25svh] w-full flex-none flex-col items-center justify-center pt-4 pb-[clamp(2rem,4svh,8rem)] text-center md:min-h-0 md:w-auto md:flex-1 md:translate-y-[clamp(0.6rem,4.2vh,2.6rem)] md:p-0">
           <InteractiveMeadowTitle />
-          <p className="meadow-subtitle mt-[1.15rem] max-w-84 text-balance text-base leading-[1.35] font-medium tracking-[-0.03em] text-white/92 drop-shadow-[0_2px_10px_rgba(54,113,181,0.22)] sm:text-lg md:mt-5 md:max-w-none md:leading-normal">
-            Building the core, illuminating the experience.
+          <p className="meadow-subtitle mt-[0.75rem] max-w-100 text-balance text-sm leading-[1.35] font-medium tracking-[-0.03em] text-white/92 drop-shadow-[0_2px_10px_rgba(54,113,181,0.22)] sm:text-base md:mt-0 md:max-w-none md:text-xl md:leading-normal lg:text-2xl">
+            Building the core,
+            <br className="md:hidden" />{" "}
+            illuminating the experience.
           </p>
           <a href="#products" className="meadow-cta relative z-16 mt-8 rounded-full bg-gradient-to-r from-[#357dff] to-[#9a8cff] px-[1.45rem] py-[0.95rem] text-sm font-semibold text-white shadow-[0_14px_34px_rgba(62,111,255,0.28)] transition md:mt-9 md:px-7 md:py-3.5 hover:-translate-y-0.5">
             View Our Products&nbsp; →
           </a>
         </div>
 
-        <div className="meadow-process-panel relative z-12 mt-4 mb-0 grid w-full gap-7 rounded-[1.8rem] border border-white/75 bg-white/88 p-[clamp(1.35rem,6vw,2rem)] text-[#17386a] shadow-[0_28px_80px_rgba(39,75,132,0.17)] backdrop-blur-xl sm:grid-cols-2 md:mt-0 md:mb-[clamp(1.5rem,5vw,4rem)] md:rounded-[2.1rem] md:p-8 lg:grid-cols-[1.7fr_repeat(4,1fr)]">
+        <div className="meadow-process-panel relative z-12 mt-4 mb-0 grid w-full gap-7 rounded-[1.8rem] border border-white/75 bg-white/88 p-[clamp(1.35rem,8vw,2rem)] text-[#17386a] shadow-[0_28px_80px_rgba(39,75,132,0.17)] backdrop-blur-xl sm:grid-cols-2 md:mt-0 md:mb-[clamp(1.5rem,5vw,4rem)] md:rounded-[2.1rem] md:p-8 lg:grid-cols-[1.7fr_repeat(4,1fr)]">
           <div className="sm:col-span-2 lg:col-span-1">
             <h2 className="text-2xl font-semibold tracking-[-0.045em] text-[#152d52] sm:text-3xl">What we do</h2>
             <p className="mt-4 max-w-sm text-sm leading-6 text-[#526582]">Core Luma is a two-person product studio. We design, build, and ship digital products that solve real problems and create meaningful experiences.</p>
           </div>
           {process.map((item) => (
-            <div key={item.title}>
-              <span className="flex size-12 items-center justify-center rounded-2xl border border-[#dae3ff] bg-gradient-to-br from-white to-[#f5f7ff] font-mono text-lg font-semibold text-[#7188ff] shadow-sm">{item.icon}</span>
-              <h3 className="mt-3 font-semibold text-[#1a3157]">{item.title}</h3>
-              <p className="mt-1 text-xs leading-5 text-[#5e6f89]">{item.copy}</p>
+            <div key={item.title} className="grid grid-cols-[2.75rem_1fr] gap-x-4 gap-y-1 md:block">
+              <span className="row-span-2 flex size-11 shrink-0 items-center justify-center rounded-2xl border border-[#dae3ff] bg-gradient-to-br from-white to-[#f5f7ff] font-mono text-base font-semibold text-[#7188ff] shadow-sm md:size-12 md:text-lg">{item.icon}</span>
+              <h3 className="font-semibold text-[#1a3157] md:mt-3">{item.title}</h3>
+              <p className="col-start-2 text-sm leading-5 text-[#5e6f89] md:mt-1 md:text-xs">{item.copy}</p>
             </div>
           ))}
         </div>
