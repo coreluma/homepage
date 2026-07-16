@@ -123,17 +123,49 @@ button {
 }
 
 .dream-bubble {
-  border: 1px solid rgba(255, 255, 255, 0.68);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
   background:
-    radial-gradient(circle at 67% 78%, rgba(255, 255, 255, 0.9) 0 2%, transparent 5%),
-    radial-gradient(circle at 27% 21%, rgba(255, 255, 255, 0.9) 0 3%, transparent 12%),
-    conic-gradient(from 160deg, rgba(50, 255, 244, 0.22), rgba(182, 82, 255, 0.3), rgba(255, 120, 193, 0.2), rgba(61, 225, 255, 0.28), transparent 75%);
+    radial-gradient(circle at 32% 23%, rgba(255,255,255,0.82) 0 5%, rgba(255,255,255,0.22) 6%, transparent 15%),
+    radial-gradient(circle at 70% 70%, rgba(255,255,255,0.64) 0 2.4%, transparent 6%),
+    radial-gradient(ellipse at 38% 76%, rgba(179, 142, 255, 0.22), transparent 44%),
+    radial-gradient(ellipse at 70% 34%, rgba(98, 231, 255, 0.2), transparent 42%),
+    conic-gradient(from 215deg at 48% 50%, transparent 0 18%, rgba(255, 129, 219, 0.2) 28%, rgba(105, 245, 255, 0.18) 43%, rgba(162, 119, 255, 0.2) 59%, transparent 78%),
+    radial-gradient(circle at 50% 50%, rgba(255,255,255,0.08), rgba(255,255,255,0.015) 52%, transparent 78%);
   box-shadow:
-    inset 8px 12px 18px rgba(255, 255, 255, 0.22),
-    inset -7px -9px 18px rgba(76, 37, 255, 0.12),
-    0 12px 25px rgba(0, 86, 154, 0.14);
-  backdrop-filter: blur(1px) saturate(1.25);
+    inset 0 0 1px rgba(255,255,255,0.32),
+    inset 9px 12px 20px rgba(255,255,255,0.13),
+    inset -12px -10px 26px rgba(66, 48, 210, 0.08),
+    0 14px 26px rgba(0, 86, 154, 0.1);
+  backdrop-filter: blur(0.45px) saturate(1.18);
   animation: bubble-float 8s ease-in-out infinite;
+}
+
+.dream-bubble::before,
+.dream-bubble::after {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  content: "";
+  border-radius: inherit;
+}
+
+.dream-bubble::before {
+  background:
+    conic-gradient(from 18deg, transparent 0 8%, rgba(255,255,255,0.36) 13%, rgba(116,242,255,0.16) 20%, transparent 31% 58%, rgba(255,128,223,0.16) 66%, rgba(255,255,255,0.18) 72%, transparent 84% 100%);
+  opacity: 0.64;
+  mix-blend-mode: screen;
+  mask-image: radial-gradient(circle, transparent 0 62%, black 73%, transparent 80%);
+}
+
+.dream-bubble::after {
+  inset: 10%;
+  background:
+    radial-gradient(circle at 18% 14%, rgba(255,255,255,0.82) 0 4%, transparent 12%),
+    radial-gradient(circle at 63% 68%, rgba(255,255,255,0.76) 0 2.2%, transparent 7%),
+    linear-gradient(118deg, transparent 18%, rgba(111, 255, 234, 0.16), transparent 43%, rgba(192, 136, 255, 0.15), transparent 68%);
+  filter: blur(0.15px);
+  opacity: 0.9;
 }
 
 .luma-hero {
@@ -229,7 +261,266 @@ button {
   z-index: 5;
 }
 
+.meadow-hero {
+  background:
+    radial-gradient(circle at 50% 42%, rgba(211, 236, 255, 0.62), transparent 25%),
+    radial-gradient(circle at 78% 22%, rgba(104, 178, 255, 0.34), transparent 28%),
+    linear-gradient(180deg, #3e7fd5 0%, #61a6eb 35%, #9ed0fa 67%, #e3f2ff 100%);
+}
+
+.meadow-hero::before {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  content: "";
+  background:
+    linear-gradient(180deg, rgba(10, 67, 159, 0.22), transparent 38%),
+    radial-gradient(ellipse at center, transparent 38%, rgba(28, 97, 190, 0.18) 100%);
+}
+
+.meadow-clouds {
+  z-index: 2;
+  background-image:
+    linear-gradient(to bottom, rgba(38, 112, 207, 0.08), transparent 26%, rgba(232, 243, 255, 0.24) 78%),
+    url("/images/cloud-texture.png");
+  background-position: center, center 38%;
+  background-size: cover, cover;
+  opacity: 0.52;
+  mix-blend-mode: screen;
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, black 66%, rgba(0,0,0,0.76) 100%);
+}
+
+.meadow-bubble {
+  z-index: 6;
+  opacity: 0.62;
+  transform: translateZ(0);
+  animation: none;
+}
+
+.meadow-bubble:nth-of-type(2n) {
+  opacity: 0.48;
+}
+
+.meadow-bubble:nth-of-type(3n) {
+  opacity: 0.36;
+}
+
+.meadow-side-cloud {
+  z-index: 4;
+  opacity: 0.78;
+}
+
+.meadow-side-cloud-left {
+  transform: rotate(-1.6deg) scale(0.94);
+}
+
+.meadow-side-cloud-right {
+  top: clamp(6.8rem, 9.8vw, 8.6rem);
+  right: max(-6.5rem, -3.4vw);
+  width: clamp(17rem, 25vw, 27.5rem);
+  opacity: 0.82;
+  transform: rotate(1.2deg);
+}
+
+.meadow-bottom-clouds {
+  bottom: clamp(5.8rem, 11vw, 9.5rem);
+  width: 112%;
+  max-width: none;
+  opacity: 0.98;
+  filter:
+    saturate(1.04)
+    drop-shadow(0 -18px 34px rgba(222, 242, 255, 0.2));
+  transform: translateX(-5.5%);
+}
+
+.meadow-grass {
+  bottom: -4.5vw;
+  opacity: 0.98;
+  filter: saturate(1.04) drop-shadow(0 -22px 38px rgba(77, 138, 80, 0.08));
+}
+
+.meadow-intro {
+  transform: translateY(clamp(0.6rem, 4.2vh, 2.6rem));
+}
+
+.interactive-meadow-title {
+  position: relative;
+  isolation: isolate;
+  display: inline-grid;
+  place-items: center;
+  min-width: min(92vw, 58rem);
+  min-height: clamp(11rem, 20vw, 18rem);
+  padding: 3.5rem 2.5rem 2.4rem;
+  perspective: 760px;
+  transform-style: preserve-3d;
+  cursor: default;
+}
+
+.interactive-meadow-title .meadow-title {
+  position: relative;
+  z-index: 3;
+  user-select: none;
+  transform:
+    translate3d(var(--title-x), var(--title-y), 0)
+    rotateX(var(--title-rotate-x))
+    rotateY(var(--title-rotate-y));
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.interactive-meadow-title-glow,
+.interactive-meadow-title-ray {
+  position: absolute;
+  pointer-events: none;
+  content: "";
+}
+
+.interactive-meadow-title-glow {
+  z-index: 1;
+  width: min(82vw, 54rem);
+  height: clamp(9rem, 19vw, 15.5rem);
+  border-radius: 999px;
+  background:
+    radial-gradient(ellipse at center, rgba(255,255,255,0.44), rgba(196,226,255,0.24) 36%, transparent 72%);
+  filter: blur(22px);
+  opacity: 0.84;
+  transform:
+    translate3d(var(--title-glow-x), var(--title-glow-y), -40px)
+    scale(1.02);
+  will-change: transform;
+}
+
+.interactive-meadow-title-ray {
+  z-index: 2;
+  width: min(74vw, 47rem);
+  height: clamp(5rem, 9vw, 8rem);
+  border-radius: 999px;
+  background:
+    linear-gradient(105deg, transparent 4%, rgba(255,255,255,0.18), transparent 34%),
+    linear-gradient(74deg, transparent 32%, rgba(154,203,255,0.16), transparent 72%);
+  filter: blur(16px);
+  opacity: 0.58;
+  transform:
+    translate3d(var(--title-ray-x), var(--title-ray-y), -20px)
+    rotate(-2deg);
+  will-change: transform;
+}
+
+.meadow-title {
+  text-shadow:
+    0 2px 0 rgba(255,255,255,0.55),
+    0 16px 28px rgba(44, 96, 164, 0.18),
+    0 0 20px rgba(255,255,255,0.18);
+}
+
+.meadow-process-panel {
+  position: relative;
+  z-index: 12;
+  margin-bottom: clamp(1.5rem, 5vw, 4rem);
+}
+
+@media (min-width: 1024px) {
+  .meadow-bottom-clouds {
+    bottom: 0;
+  }
+
+  .meadow-grass {
+    bottom: -7vw;
+  }
+}
+
 @media (max-width: 767px) {
+  .meadow-hero {
+    min-height: 200svh;
+    overflow: visible;
+    overflow-x: clip;
+  }
+
+  .meadow-bg-stage {
+    position: sticky;
+    top: 0;
+    z-index: 0;
+    height: 100svh;
+    margin-bottom: -100svh;
+    overflow: hidden;
+  }
+
+  .meadow-hero header > div {
+    height: 5.5rem;
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+  }
+
+  .meadow-hero header a:first-of-type {
+    gap: 0.65rem;
+    font-size: 1.35rem;
+  }
+
+  .meadow-hero header a:first-of-type span {
+    font-size: 1.35rem;
+  }
+
+  .meadow-hero header a[href="#contact"] {
+    padding: 0.85rem 1.05rem;
+    font-size: 0.95rem;
+    box-shadow: 0 12px 28px rgba(32, 88, 170, 0.16);
+  }
+
+  .meadow-content {
+    min-height: 200svh;
+    padding-top: 0;
+    padding-bottom: 3rem;
+  }
+
+  .meadow-intro {
+    flex: none;
+    width: 100%;
+    min-height: 100svh;
+    padding-top: 6.5rem;
+    padding-bottom: 7rem;
+    transform: none;
+  }
+
+  .interactive-meadow-title {
+    min-width: 100%;
+    min-height: auto;
+    padding: 4.5rem 0 0.25rem;
+  }
+
+  .interactive-meadow-title .meadow-title {
+    max-width: 7ch;
+    font-size: clamp(4.6rem, 24vw, 6.35rem);
+    line-height: 0.86;
+    letter-spacing: -0.055em;
+  }
+
+  .interactive-meadow-title-glow {
+    width: 110%;
+    height: 9rem;
+    filter: blur(18px);
+  }
+
+  .interactive-meadow-title-ray {
+    width: 92%;
+    height: 4.5rem;
+    filter: blur(14px);
+  }
+
+  .meadow-subtitle {
+    max-width: 21rem;
+    margin-top: 1.15rem;
+    font-size: 1rem;
+    line-height: 1.35;
+  }
+
+  .meadow-cta {
+    position: relative;
+    z-index: 16;
+    margin-top: 2rem;
+    padding: 0.95rem 1.45rem;
+  }
+
   .luma-clouds { background-size: auto 100%, auto 100%; }
   .luma-side-cloud {
     width: 20rem;
@@ -248,6 +539,29 @@ button {
     width: 150%;
     max-width: none;
     transform: translateX(-16.666%);
+  }
+  .meadow-bottom-clouds {
+    top: calc(100svh - 15rem);
+    bottom: auto;
+    width: 170%;
+    max-width: none;
+    transform: translateX(-20%);
+  }
+  .meadow-grass {
+    top: calc(100svh - 8.5rem);
+    bottom: auto;
+    width: 180%;
+    max-width: none;
+    transform: translateX(-22%);
+  }
+  .meadow-process-panel {
+    position: sticky;
+    top: 6.75rem;
+    margin-top: 0;
+    margin-bottom: 0;
+    gap: 2.1rem;
+    border-radius: 1.8rem;
+    padding: 2rem;
   }
 }
 

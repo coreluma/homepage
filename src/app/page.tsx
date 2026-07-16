@@ -1,4 +1,4 @@
-import { HeroDesignSwitcher } from "@/components/hero-design-switcher";
+import { HeroSectionMeadow } from "@/components/hero-section-meadow";
 import { ProductsSection } from "@/components/products-section";
 import { SectionShell } from "@/components/ui/section-shell";
 
@@ -38,7 +38,7 @@ const sections = [
 export default function Home() {
   return (
     <main className="min-h-screen overflow-hidden">
-      <HeroDesignSwitcher />
+      <HeroSectionMeadow />
       <ProductsSection />
 
       {sections.map((section) => (
