@@ -254,6 +254,7 @@ button {
 }
 
 .meadow-hero {
+  --meadow-parallax: 0px;
   background:
     radial-gradient(circle at 50% 42%, rgba(211, 236, 255, 0.62), transparent 25%),
     radial-gradient(circle at 78% 22%, rgba(104, 178, 255, 0.34), transparent 28%),
@@ -322,6 +323,54 @@ button {
   filter: saturate(1.04) drop-shadow(0 -22px 38px rgba(77, 138, 80, 0.08));
 }
 
+@media (max-width: 767px) {
+  .meadow-clouds {
+    translate: 0 calc(var(--meadow-parallax) * 0.16);
+    will-change: translate;
+  }
+
+  .meadow-side-cloud-left {
+    translate: 0 calc(var(--meadow-parallax) * 0.09);
+    will-change: translate;
+  }
+
+  .meadow-side-cloud-right {
+    translate: 0 calc(var(--meadow-parallax) * 0.13);
+    will-change: translate;
+  }
+
+  .meadow-bubble {
+    animation: meadow-bubble-float 8.5s ease-in-out infinite;
+    will-change: translate, scale, opacity;
+  }
+
+  .meadow-bubble:nth-of-type(2n) {
+    animation-delay: -2.8s;
+    animation-duration: 10.5s;
+  }
+
+  .meadow-bubble:nth-of-type(3n) {
+    animation-delay: -5.2s;
+    animation-duration: 12s;
+  }
+
+  .meadow-hero[data-motion-ready="true"] .meadow-process-item:not([data-revealed="true"]) {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+
+  .meadow-process-item {
+    transition:
+      opacity 400ms ease-out,
+      transform 400ms ease-out;
+  }
+
+  .meadow-process-item[data-revealed="true"] {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .interactive-meadow-title {
   position: relative;
   isolation: isolate;
@@ -330,6 +379,18 @@ button {
   perspective: 760px;
   transform-style: preserve-3d;
   cursor: default;
+}
+
+.meadow-title-entrance {
+  animation: meadow-title-entrance 760ms ease-out 150ms backwards;
+}
+
+.meadow-subtitle-entrance {
+  animation: meadow-content-entrance 660ms ease-out 280ms backwards;
+}
+
+.meadow-cta-entrance {
+  animation: meadow-content-entrance 660ms ease-out 410ms backwards;
 }
 
 .interactive-meadow-title .meadow-title {
@@ -433,6 +494,45 @@ button {
     transform: translate3d(0, -7px, 0);
   }
 }
+
+@keyframes meadow-bubble-float {
+  0%,
+  100% {
+    translate: 0 0;
+    scale: 1;
+  }
+  45% {
+    translate: 5px -15px;
+    scale: 1.035;
+  }
+  72% {
+    translate: -3px -7px;
+    scale: 0.985;
+  }
+}
+
+@keyframes meadow-title-entrance {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes meadow-content-entrance {
+  from {
+    opacity: 0;
+    transform: translateY(0.875rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 
 .products-section {
   background:

@@ -18,12 +18,24 @@ function Write-Step($Message) {
 function Get-PythonCommand {
   $python = Get-Command python -ErrorAction SilentlyContinue
   if ($python) {
-    return @($python.Source)
+    try {
+      & $python.Source --version *> $null
+      if ($LASTEXITCODE -eq 0) {
+        return @($python.Source)
+      }
+    } catch {
+      # Ignore the non-executable WindowsApps alias and try other runtimes.
+    }
   }
 
   $py = Get-Command py -ErrorAction SilentlyContinue
   if ($py) {
     return @($py.Source, "-3")
+  }
+
+  $bundledPython = Join-Path $env:USERPROFILE ".cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe"
+  if (Test-Path $bundledPython) {
+    return @($bundledPython)
   }
 
   throw "Python 3 was not found. Install Python 3 and try again."
@@ -49,15 +61,19 @@ function ConvertTo-PlainText([securestring]$SecureString) {
 $repoRoot = Resolve-Path (Join-Path $PSScriptRoot "..")
 Set-Location $repoRoot
 
-$pythonCmd = Get-PythonCommand
+$pythonCmd = @(Get-PythonCommand)
 
 Write-Step "Checking Python SSH dependency"
-Invoke-Python @("-c", "import paramiko") 2>$null
-if ($LASTEXITCODE -ne 0) {
-  if (-not $InstallDeps) {
-    throw "Paramiko is not installed. Run 'npm run deploy -- -InstallDeps' once."
-  }
+$previousErrorActionPreference = $ErrorActionPreference
+try {
+  $ErrorActionPreference = "Continue"
+  Invoke-Python @("-c", "import paramiko") 2>$null
+  $paramikoCheckExitCode = $LASTEXITCODE
+} finally {
+  $ErrorActionPreference = $previousErrorActionPreference
+}
 
+if ($paramikoCheckExitCode -ne 0) {
   Write-Step "Installing Paramiko"
   Invoke-Python @("-m", "pip", "install", "paramiko")
   if ($LASTEXITCODE -ne 0) {

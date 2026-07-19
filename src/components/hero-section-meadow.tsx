@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { InteractiveMeadowTitle } from "@/components/interactive-meadow-title";
+import { MeadowMotionController } from "@/components/meadow-motion-controller";
 import { Container } from "@/components/ui/container";
 
 const process = [
@@ -23,18 +24,17 @@ const bubbles = [
 
 function MeadowHeader() {
   return (
-    <header className="absolute inset-x-0 top-0 z-40 text-white">
-      <Container className="flex h-22 items-center justify-between !px-4 min-[421px]:!px-6 md:h-24 md:!px-8 lg:!px-12">
-        <a href="#top" className="flex items-center text-[1.1rem] font-semibold tracking-[-0.035em] min-[421px]:text-[1.35rem] md:gap-0 md:text-xl focus-visible:rounded-md focus-visible:outline-2 focus-visible:outline-white">
+    <header className="absolute inset-x-0 top-0 z-40 h-auto w-full text-white">
+      <Container className="flex h-16 items-center justify-between !px-4 min-[421px]:!px-6 md:h-20 md:!px-8 lg:!px-12">
+        <a href="#top" className="flex items-center focus-visible:rounded-md focus-visible:outline-2 focus-visible:outline-white">
           <Image
-            src="/images/logo/core-luma-logo-white.svg"
-            alt=""
-            width={24}
+            src="/images/logo/coreluma-glitter-logo-flat.svg"
+            alt="Core Luma"
+            width={148}
             height={24}
             priority
-            className="size-6 shrink-0 object-contain"
+            className="h-4 w-auto min-[421px]:h-5 md:h-6"
           />
-          Core Luma
         </a>
         <nav className="hidden rounded-full border border-white/18 bg-white/16 p-1 backdrop-blur-md lg:flex" aria-label="Main navigation">
           <a href="#products" className="rounded-full bg-white px-5 py-3 text-sm font-semibold text-[#1764e8] shadow-sm xl:px-8">Products</a>
@@ -65,9 +65,11 @@ function MeadowHeader() {
 
 export function HeroSectionMeadow() {
   return (
-    <section id="top" className="meadow-hero relative isolate min-h-[100svh] overflow-hidden text-white">
-      <MeadowHeader />
-      <div className="meadow-bg-stage pointer-events-none absolute inset-0 min-h-[100svh] overflow-hidden" aria-hidden="true">
+    <section id="top" className="meadow-hero relative isolate min-h-[100svh] w-full overflow-clip text-white md:h-[100svh]">
+      <MeadowMotionController />
+      
+      {/* 액자 프레임 배경 */}
+      <div className="meadow-bg-stage pointer-events-none absolute inset-0 z-0 h-full w-full overflow-clip" aria-hidden="true">
         <div className="meadow-clouds absolute inset-0" />
         {bubbles.map((position) => (
           <span
@@ -91,6 +93,7 @@ export function HeroSectionMeadow() {
           priority
           className="luma-side-cloud luma-side-cloud-right meadow-side-cloud meadow-side-cloud-right absolute top-[7.4rem] -right-42 h-auto w-80 max-w-none opacity-64 md:top-[clamp(6.8rem,9.8vw,8.6rem)] md:right-[max(-6.5rem,-3.4vw)] md:w-[clamp(17rem,25vw,27.5rem)] md:opacity-82"
         />
+        
         <Image
           src="/images/luma-bottom-clouds-natural.png"
           alt=""
@@ -99,43 +102,63 @@ export function HeroSectionMeadow() {
           priority
           className="meadow-bottom-clouds absolute inset-x-0 bottom-0 z-[3] h-auto w-[170%] max-w-none -translate-x-[20%] md:bottom-[clamp(5.8rem,11vw,9.5rem)] md:w-[112%] md:-translate-x-[5.5%] lg:bottom-0"
         />
-        <Image
-          src="/images/dreamcore-grass.png"
-          alt=""
-          width={1746}
-          height={901}
-          priority
-          className="meadow-grass absolute inset-x-0 bottom-0 z-[5] h-auto w-[180%] max-w-none -translate-x-[22%] md:bottom-[-4.5vw] md:w-full md:translate-x-0 lg:bottom-[-7vw]"
-        />
+        <div className="sticky top-0 z-[5] h-[100svh] w-full md:contents">
+          <Image
+            src="/images/dreamcore-grass.png"
+            alt=""
+            width={1746}
+            height={901}
+            priority
+            className="meadow-grass absolute inset-x-0 bottom-0 z-[5] h-auto w-[180%] max-w-none -translate-x-[22%] md:bottom-[-4.5vw] md:w-full md:translate-x-0 lg:bottom-[-7vw]"
+          />
+        </div>
       </div>
 
-      <Container className="meadow-content relative z-10 flex min-h-[100svh] flex-col items-center pt-22 pb-5 md:pt-28 md:pb-10 lg:pt-24">
-        <div className="meadow-intro flex min-h-25svh] w-full flex-none flex-col items-center justify-center pt-4 pb-[clamp(2rem,4svh,8rem)] text-center md:min-h-0 md:w-auto md:flex-1 md:translate-y-[clamp(0.6rem,4.2vh,2.6rem)] md:p-0">
-          <InteractiveMeadowTitle />
-          <p className="meadow-subtitle mt-[0.75rem] max-w-100 text-balance text-sm leading-[1.35] font-medium tracking-[-0.03em] text-white/92 drop-shadow-[0_2px_10px_rgba(54,113,181,0.22)] sm:text-base md:mt-0 md:max-w-none md:text-xl md:leading-normal lg:text-2xl">
-            Building the core,
-            <br className="md:hidden" />{" "}
-            illuminating the experience.
-          </p>
-          <a href="#products" className="meadow-cta relative z-16 mt-8 rounded-full bg-gradient-to-r from-[#357dff] to-[#9a8cff] px-[1.45rem] py-[0.95rem] text-sm font-semibold text-white shadow-[0_14px_34px_rgba(62,111,255,0.28)] transition md:mt-9 md:px-7 md:py-3.5 hover:-translate-y-0.5">
-            View Our Products&nbsp; →
-          </a>
-        </div>
-
-        <div className="meadow-process-panel relative z-12 mt-4 mb-0 grid w-full gap-7 rounded-[1.8rem] border border-white/75 bg-white/88 p-[clamp(1.35rem,8vw,2rem)] text-[#17386a] shadow-[0_28px_80px_rgba(39,75,132,0.17)] backdrop-blur-xl sm:grid-cols-2 md:mt-0 md:mb-[clamp(1.5rem,5vw,4rem)] md:rounded-[2.1rem] md:p-8 lg:grid-cols-[1.7fr_repeat(4,1fr)]">
-          <div className="sm:col-span-2 lg:col-span-1">
-            <h2 className="text-2xl font-semibold tracking-[-0.045em] text-[#152d52] sm:text-3xl">What we do</h2>
-            <p className="mt-4 max-w-sm text-sm leading-6 text-[#526582]">Core Luma is a two-person product studio. We design, build, and ship digital products that solve real problems and create meaningful experiences.</p>
+      {/* 내부 콘텐츠 스크롤 컨테이너 */}
+      <div className="meadow-content-scroll-container relative z-10 w-full md:h-[100svh]">
+        <MeadowHeader />
+        
+        <Container className="meadow-content flex flex-col items-center pt-16 pb-0 md:h-[100svh] md:min-h-[100svh] md:pt-20 md:pb-10">
+          
+          {/* 
+            [핵심 수정 1] 
+            모바일에서 불필요하게 가상 높이를 만들던 min-h-[calc(100svh-5.5rem)]를 제거하고 h-auto로 변경했습니다.
+            첫 뷰에서 자연스럽게 중앙 정렬되도록 패딩 배율(pt-16 pb-20)을 새로 고정했습니다.
+          */}
+          <div className="meadow-intro relative z-1 flex h-auto min-h-0 w-full flex-none flex-col items-center justify-center pt-4 pb-4 text-center md:w-auto md:flex-1 md:translate-y-[clamp(0.4rem,2.5vh,1.5rem)] md:p-0">
+            <InteractiveMeadowTitle />
+            <p className="meadow-subtitle meadow-subtitle-entrance mt-[0.75rem] max-w-100 text-balance text-sm leading-[1.35] font-medium tracking-[-0.03em] text-white/92 drop-shadow-[0_2px_10px_rgba(54,113,181,0.22)] sm:text-base md:mt-0 md:max-w-none md:text-xl md:leading-normal lg:text-2xl">
+              Building the core,
+              <br className="md:hidden" />{" "}
+              illuminating the experience.
+            </p>
+            <a href="#products" className="meadow-cta meadow-cta-entrance relative z-16 mt-8 rounded-full bg-gradient-to-r from-[#357dff] to-[#9a8cff] px-[1.45rem] py-[0.95rem] text-sm font-semibold text-white shadow-[0_14px_34px_rgba(62,111,255,0.28)] transition md:mt-9 md:px-7 md:py-3.5 hover:-translate-y-0.5">
+              View Our Products&nbsp; →
+            </a>
           </div>
-          {process.map((item) => (
-            <div key={item.title} className="grid grid-cols-[2.75rem_1fr] gap-x-4 gap-y-1 md:block">
-              <span className="row-span-2 flex size-11 shrink-0 items-center justify-center rounded-2xl border border-[#dae3ff] bg-gradient-to-br from-white to-[#f5f7ff] font-mono text-base font-semibold text-[#7188ff] shadow-sm md:size-12 md:text-lg">{item.icon}</span>
-              <h3 className="font-semibold text-[#1a3157] md:mt-3">{item.title}</h3>
-              <p className="col-start-2 text-sm leading-5 text-[#5e6f89] md:mt-1 md:text-xs">{item.copy}</p>
+
+          {/* 
+            [핵심 수정 2] 
+            프로세스 판넬 상단 진입 시의 불필요한 공백을 걷어내기 위해 상단 패딩을 pt-4로 최적화했습니다.
+          */}
+          <div className="flex h-auto w-full shrink-0 items-center pt-4 pb-12 md:min-h-0 md:w-full md:shrink-1 md:items-stretch md:p-0 md:contents">
+            <div className="meadow-process-panel relative z-12 grid w-full gap-7 rounded-[1.8rem] border border-white/75 bg-white/88 p-[clamp(1.35rem,8vw,2rem)] text-[#17386a] shadow-[0_28px_80px_rgba(39,75,132,0.17)] backdrop-blur-xl sm:grid-cols-2 md:mb-[clamp(1.5rem,4vw,3.5rem)] md:rounded-[2.1rem] md:p-8 lg:grid-cols-[1.7fr_repeat(4,1fr)]">
+              <div className="meadow-process-intro sm:col-span-2 lg:col-span-1">
+                <h2 className="text-2xl font-semibold tracking-[-0.045em] text-[#152d52] sm:text-3xl">What we do</h2>
+                <p className="mt-4 max-w-sm text-sm leading-6 text-[#526582]">Core Luma is a two-person product studio. We design, build, and ship digital products that solve real problems and create meaningful experiences.</p>
+              </div>
+              {process.map((item) => (
+                <div key={item.title} className="meadow-process-item grid grid-cols-[2.75rem_1fr] gap-x-4 gap-y-1 md:block">
+                  <span className="row-span-2 flex size-11 shrink-0 items-center justify-center rounded-2xl border border-[#dae3ff] bg-gradient-to-br from-white to-[#f5f7ff] font-mono text-base font-semibold text-[#7188ff] shadow-sm md:size-12 md:text-lg">{item.icon}</span>
+                  <h3 className="font-semibold text-[#1a3157] md:mt-3">{item.title}</h3>
+                  <p className="col-start-2 text-sm leading-5 text-[#5e6f89] md:mt-1 md:text-xs">{item.copy}</p>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-      </Container>
+          </div>
+
+        </Container>
+      </div>
     </section>
   );
 }

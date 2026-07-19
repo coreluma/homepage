@@ -96,7 +96,7 @@ export function InteractiveMeadowTitle() {
   return (
     <div
       ref={rootRef}
-      className="interactive-meadow-title min-h-auto min-w-full px-0 pt-8 pb-1 md:min-h-[clamp(11rem,20vw,18rem)] md:min-w-[min(92vw,58rem)] md:px-10"
+      className="interactive-meadow-title meadow-title-entrance min-h-auto min-w-full px-0 pt-8 pb-1 md:min-h-[clamp(11rem,20vw,18rem)] md:min-w-[min(92vw,58rem)] md:px-10"
       style={initialStyle}
     >
       <span className="interactive-meadow-title-glow h-36 w-[110%] blur-[18px] md:h-[clamp(9rem,19vw,15.5rem)] md:w-[min(82vw,54rem)] md:blur-[22px]" aria-hidden="true" />
