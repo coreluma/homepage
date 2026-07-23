@@ -5,9 +5,8 @@ import { useEffect } from "react";
 export function MeadowMotionController() {
   useEffect(() => {
     const hero = document.getElementById("top");
-    const items = hero?.querySelectorAll<HTMLElement>(".meadow-process-item");
 
-    if (!hero || !items) {
+    if (!hero) {
       return;
     }
 
@@ -17,7 +16,7 @@ export function MeadowMotionController() {
     const mobileViewport = window.matchMedia("(max-width: 767px)");
     let frame = 0;
 
-    const updateParallax = () => {
+    const updateMotion = () => {
       frame = 0;
 
       if (reducedMotion.matches || !mobileViewport.matches) {
@@ -29,34 +28,20 @@ export function MeadowMotionController() {
       hero.style.setProperty("--meadow-parallax", `${distance}px`);
     };
 
-    const requestParallaxUpdate = () => {
+    const requestMotionUpdate = () => {
       if (!frame) {
-        frame = requestAnimationFrame(updateParallax);
+        frame = requestAnimationFrame(updateMotion);
       }
     };
 
-    const itemObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            (entry.target as HTMLElement).dataset.revealed = "true";
-            itemObserver.unobserve(entry.target);
-          }
-        });
-      },
-      { rootMargin: "0px 0px -35% 0px", threshold: 0.01 },
-    );
-
-    items.forEach((item) => itemObserver.observe(item));
-    updateParallax();
-    window.addEventListener("scroll", requestParallaxUpdate, { passive: true });
-    window.addEventListener("resize", requestParallaxUpdate);
+    updateMotion();
+    window.addEventListener("scroll", requestMotionUpdate, { passive: true });
+    window.addEventListener("resize", requestMotionUpdate);
 
     return () => {
       cancelAnimationFrame(frame);
-      itemObserver.disconnect();
-      window.removeEventListener("scroll", requestParallaxUpdate);
-      window.removeEventListener("resize", requestParallaxUpdate);
+      window.removeEventListener("scroll", requestMotionUpdate);
+      window.removeEventListener("resize", requestMotionUpdate);
       delete hero.dataset.motionReady;
     };
   }, []);

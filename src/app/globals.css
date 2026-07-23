@@ -363,21 +363,6 @@ button {
     animation-duration: 12s;
   }
 
-  .meadow-hero[data-motion-ready="true"] .meadow-process-item:not([data-revealed="true"]) {
-    opacity: 0;
-    transform: translateY(1.25rem);
-  }
-
-  .meadow-process-item {
-    transition:
-      opacity 400ms ease-out,
-      transform 400ms ease-out;
-  }
-
-  .meadow-process-item[data-revealed="true"] {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 .interactive-meadow-title {

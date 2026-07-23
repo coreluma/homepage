@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { InteractiveMeadowTitle } from "@/components/interactive-meadow-title";
 import { MeadowMotionController } from "@/components/meadow-motion-controller";
+import { MeadowProcessItem } from "@/components/meadow-process-item";
 import { Container } from "@/components/ui/container";
 
 const process = [
@@ -25,7 +26,7 @@ const bubbles = [
 function MeadowHeader() {
   return (
     <header className="absolute inset-x-0 top-0 z-40 h-auto w-full text-white">
-      <Container className="flex h-16 items-center justify-between !px-4 min-[421px]:!px-6 md:h-20 md:!px-8 lg:!px-12">
+      <Container className="flex h-16 items-center justify-between !px-4 min-[421px]:!px-6 md:h-28 md:!px-8 lg:!px-12">
         <a href="#top" className="flex items-center focus-visible:rounded-md focus-visible:outline-2 focus-visible:outline-white">
           <Image
             src="/images/logo/coreluma-glitter-logo-flat.svg"
@@ -65,7 +66,7 @@ function MeadowHeader() {
 
 export function HeroSectionMeadow() {
   return (
-    <section id="top" className="meadow-hero relative isolate min-h-[100svh] w-full overflow-clip text-white md:h-[100svh]">
+    <section id="top" className="meadow-hero relative isolate min-h-[100svh] w-full text-white md:h-[100svh]">
       <MeadowMotionController />
       
       {/* 액자 프레임 배경 */}
@@ -149,12 +150,16 @@ export function HeroSectionMeadow() {
                 <h2 className="text-2xl font-semibold tracking-[-0.045em] text-[#152d52] sm:text-3xl">What we do</h2>
                 <p className="mt-4 max-w-sm text-sm leading-6 text-[#526582]">Core Luma is a two-person product studio. We design, build, and ship digital products that solve real problems and create meaningful experiences.</p>
               </div>
-              {process.map((item) => (
-                <div key={item.title} className="meadow-process-item grid grid-cols-[2.75rem_1fr] gap-x-4 gap-y-1 md:block">
+              {process.map((item, index) => (
+                <MeadowProcessItem
+                  key={item.title}
+                  index={index}
+                  className="grid grid-cols-[2.75rem_1fr] gap-x-4 gap-y-1 md:block"
+                >
                   <span className="row-span-2 flex size-11 shrink-0 items-center justify-center rounded-2xl border border-[#dae3ff] bg-gradient-to-br from-white to-[#f5f7ff] font-mono text-base font-semibold text-[#7188ff] shadow-sm md:size-12 md:text-lg">{item.icon}</span>
                   <h3 className="font-semibold text-[#1a3157] md:mt-3">{item.title}</h3>
                   <p className="col-start-2 text-sm leading-5 text-[#5e6f89] md:mt-1 md:text-xs">{item.copy}</p>
-                </div>
+                </MeadowProcessItem>
               ))}
             </div>
           </div>
