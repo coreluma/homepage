@@ -115,6 +115,8 @@ export function HeroSectionMeadow() {
       </div>
 
       {/* 내부 콘텐츠 스크롤 컨테이너 */}
+      <div className="meadow-opening-light pointer-events-none absolute inset-0 z-30" aria-hidden="true" />
+
       <div className="meadow-content-scroll-container relative z-10 w-full md:h-[100svh]">
         <MeadowHeader />
         

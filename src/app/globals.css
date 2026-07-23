@@ -305,10 +305,12 @@ button {
 
 .meadow-side-cloud-left {
   transform: rotate(-1.6deg) scale(0.94);
+  animation: meadow-cloud-curtain-left 1350ms cubic-bezier(0.16, 1, 0.3, 1) 100ms both;
 }
 
 .meadow-side-cloud-right {
   transform: rotate(1.2deg);
+  animation: meadow-cloud-curtain-right 1350ms cubic-bezier(0.16, 1, 0.3, 1) 140ms both;
 }
 
 .meadow-bottom-clouds {
@@ -321,6 +323,13 @@ button {
 .meadow-grass {
   opacity: 0.98;
   filter: saturate(1.04) drop-shadow(0 -22px 38px rgba(77, 138, 80, 0.08));
+}
+
+.meadow-opening-light {
+  background:
+    radial-gradient(circle at 50% 42%, rgba(45, 100, 177, 0.06), rgba(19, 59, 124, 0.34)),
+    rgba(27, 75, 146, 0.16);
+  animation: meadow-sky-awaken 1100ms cubic-bezier(0.2, 0.72, 0.2, 1) both;
 }
 
 @media (max-width: 767px) {
@@ -382,15 +391,15 @@ button {
 }
 
 .meadow-title-entrance {
-  animation: meadow-title-entrance 760ms ease-out 150ms backwards;
+  animation: meadow-title-entrance 760ms ease-out 250ms backwards;
 }
 
 .meadow-subtitle-entrance {
-  animation: meadow-content-entrance 660ms ease-out 280ms backwards;
+  animation: meadow-content-entrance 660ms ease-out 500ms backwards;
 }
 
 .meadow-cta-entrance {
-  animation: meadow-content-entrance 660ms ease-out 410ms backwards;
+  animation: meadow-content-entrance 660ms ease-out 650ms backwards;
 }
 
 .interactive-meadow-title .meadow-title {
@@ -519,6 +528,41 @@ button {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes meadow-sky-awaken {
+  from {
+    opacity: 1;
+    backdrop-filter: brightness(0.82) saturate(0.86);
+  }
+  to {
+    opacity: 0;
+    backdrop-filter: brightness(1) saturate(1);
+  }
+}
+
+@keyframes meadow-cloud-curtain-left {
+  from {
+    opacity: 0.38;
+    filter: blur(5px);
+    transform: translateX(2rem) rotate(-1.6deg) scale(1.04);
+  }
+  to {
+    filter: blur(0);
+    transform: translateX(0) rotate(-1.6deg) scale(0.94);
+  }
+}
+
+@keyframes meadow-cloud-curtain-right {
+  from {
+    opacity: 0.38;
+    filter: blur(5px);
+    transform: translateX(-2rem) rotate(1.2deg) scale(1.06);
+  }
+  to {
+    filter: blur(0);
+    transform: translateX(0) rotate(1.2deg) scale(1);
   }
 }
 
