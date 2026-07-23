@@ -82,6 +82,17 @@ if ($paramikoCheckExitCode -ne 0) {
 }
 
 if (-not $env:CORELUMA_SSH_PASSWORD) {
+  $savedPassword = [Environment]::GetEnvironmentVariable(
+    "CORELUMA_SSH_PASSWORD",
+    [EnvironmentVariableTarget]::User
+  )
+
+  if ($savedPassword) {
+    $env:CORELUMA_SSH_PASSWORD = $savedPassword
+  }
+}
+
+if (-not $env:CORELUMA_SSH_PASSWORD) {
   $securePassword = Read-Host "SSH/sudo password" -AsSecureString
   $env:CORELUMA_SSH_PASSWORD = ConvertTo-PlainText $securePassword
 }
