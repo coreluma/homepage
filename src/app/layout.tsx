@@ -9,8 +9,11 @@ const dmSerifText = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Core Luma — Product Studio",
+  title: "Core Luma",
   description: "Building the core, illuminating the experience.",
+  icons: {
+    icon: "/images/logo/coreluma-round.svg",
+  },
 };
 
 export const viewport: Viewport = {

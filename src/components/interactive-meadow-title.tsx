@@ -108,7 +108,7 @@ export function InteractiveMeadowTitle() {
           width={1700}
           height={1700}
           priority
-          className="pointer-events-none absolute top-1/2 left-1/2 w-full max-w-none -translate-x-1/2 -translate-y-1/2 [filter:drop-shadow(0_3px_0_rgba(255,255,255,0.55))_drop-shadow(0_16px_28px_rgba(44,96,164,0.18))_drop-shadow(0_0_20px_rgba(255,255,255,0.18))] md:hidden"
+          className="pointer-events-none absolute top-1/2 left-1/2 w-[88%] max-w-none -translate-x-1/2 -translate-y-1/2 [filter:drop-shadow(0_3px_0_rgba(255,255,255,0.55))_drop-shadow(0_16px_28px_rgba(44,96,164,0.18))_drop-shadow(0_0_20px_rgba(255,255,255,0.18))] md:hidden"
           aria-hidden="true"
         />
         <Image
