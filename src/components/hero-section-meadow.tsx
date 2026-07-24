@@ -73,7 +73,7 @@ function MeadowHeader() {
                 width={148}
                 height={24}
                 priority
-                className="h-4 w-auto min-[421px]:h-5 md:h-6"
+                className="h-3.5 w-auto min-[421px]:h-4 md:h-[1.15rem]"
               />
             </a>
             <nav className="hidden rounded-full border border-white/18 bg-white/10 p-1 backdrop-blur-md lg:flex" aria-label="Main navigation">

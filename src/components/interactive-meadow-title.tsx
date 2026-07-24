@@ -101,14 +101,14 @@ export function InteractiveMeadowTitle() {
     >
       <span className="interactive-meadow-title-glow h-36 w-[110%] blur-[18px] md:h-[clamp(9rem,19vw,15.5rem)] md:w-[min(82vw,54rem)] md:blur-[22px]" aria-hidden="true" />
       <span className="interactive-meadow-title-ray h-18 w-[92%] blur-[14px] md:h-[clamp(5rem,9vw,8rem)] md:w-[min(74vw,47rem)] md:blur-[16px]" aria-hidden="true" />
-      <h1 className="luma-title meadow-title h-[clamp(6rem,30vw,8.5rem)] w-[min(56vw,18rem)] font-normal md:h-[clamp(5rem,11vw,8.75rem)] md:w-[min(68vw,54rem)]">
+      <h1 className="luma-title meadow-title h-[clamp(6rem,30vw,8.5rem)] w-[min(52vw,16rem)] font-normal md:h-[clamp(5rem,11vw,8.75rem)] md:w-[min(58vw,46rem)]">
         <Image
           src="/images/logo/coreluma-glitter-logo.svg"
           alt=""
           width={1700}
           height={1700}
           priority
-          className="pointer-events-none absolute top-1/2 left-1/2 w-[88%] max-w-none -translate-x-1/2 -translate-y-1/2 [filter:drop-shadow(0_3px_0_rgba(255,255,255,0.55))_drop-shadow(0_16px_28px_rgba(44,96,164,0.18))_drop-shadow(0_0_20px_rgba(255,255,255,0.18))] md:hidden"
+          className="pointer-events-none absolute top-1/2 left-1/2 w-[78%] max-w-none -translate-x-1/2 -translate-y-1/2 [filter:drop-shadow(0_3px_0_rgba(255,255,255,0.55))_drop-shadow(0_16px_28px_rgba(44,96,164,0.18))_drop-shadow(0_0_20px_rgba(255,255,255,0.18))] md:hidden"
           aria-hidden="true"
         />
         <Image
@@ -117,7 +117,7 @@ export function InteractiveMeadowTitle() {
           width={2774}
           height={449}
           priority
-          className="pointer-events-none absolute top-1/2 left-1/2 hidden w-full max-w-none -translate-x-1/2 -translate-y-1/2 [filter:drop-shadow(0_5px_0_#dfecf9)_drop-shadow(0_16px_28px_rgba(44,96,164,0.18))_drop-shadow(0_0_20px_rgba(255,255,255,0.18))] md:block"
+          className="pointer-events-none absolute top-1/2 left-1/2 hidden w-[88%] max-w-none -translate-x-1/2 -translate-y-1/2 [filter:drop-shadow(0_5px_0_#dfecf9)_drop-shadow(0_16px_28px_rgba(44,96,164,0.18))_drop-shadow(0_0_20px_rgba(255,255,255,0.18))] md:block"
           aria-hidden="true"
         />
         <span className="sr-only">Core Luma</span>
