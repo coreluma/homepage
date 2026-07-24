@@ -222,8 +222,8 @@ export function HeroSectionMeadow() {
             프로세스 판넬 상단 진입 시의 불필요한 공백을 걷어내기 위해 상단 패딩을 pt-4로 최적화했습니다.
           */}
           <div className="flex h-auto w-full shrink-0 items-center pt-4 pb-12 md:min-h-0 md:w-full md:shrink-1 md:items-stretch md:p-0 md:contents">
-            <div className="meadow-process-panel relative z-12 grid w-full gap-7 rounded-[1.8rem] border border-white/75 bg-white/72 p-[clamp(1.35rem,8vw,2rem)] text-[#17386a] shadow-[0_28px_80px_rgba(39,75,132,0.17)] backdrop-blur-xl sm:grid-cols-2 md:mb-[clamp(1.5rem,4vw,3.5rem)] md:rounded-[2.1rem] md:p-8 lg:grid-cols-[1.7fr_repeat(4,1fr)]">
-              <div className="meadow-process-intro sm:col-span-2 lg:col-span-1 mb-4 md:mb-0">
+            <div className="meadow-process-panel relative z-12 grid w-full gap-7 rounded-[1.8rem] border border-white/75 bg-white/72 p-[clamp(1.35rem,8vw,2rem)] text-[#17386a] shadow-[0_28px_80px_rgba(39,75,132,0.17)] backdrop-blur-xl md:mb-[clamp(1.5rem,4vw,3.5rem)] md:grid-cols-[1.7fr_repeat(4,1fr)] md:rounded-[2.1rem] md:p-8">
+              <div className="meadow-process-intro mb-4 md:mb-0 md:col-span-1">
                 <h2 className="text-2xl font-semibold tracking-[-0.045em] text-[#152d52] sm:text-3xl">What we do</h2>
                 <p className="mt-4 max-w-sm text-sm leading-6 text-[#526582]">Core Luma is a two-person product studio. We design, build, and ship digital products that solve real problems and create meaningful experiences.</p>
               </div>
