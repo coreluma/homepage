@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 import { InteractiveMeadowTitle } from "@/components/interactive-meadow-title";
 import { MeadowMotionController } from "@/components/meadow-motion-controller";
 import { MeadowProcessItem } from "@/components/meadow-process-item";
@@ -65,8 +68,44 @@ function MeadowHeader() {
 }
 
 export function HeroSectionMeadow() {
+  const [heroReplayKey, setHeroReplayKey] = useState(0);
+  const hasEnteredRef = useRef(false);
+
+  useEffect(() => {
+    const hero = document.getElementById("top");
+
+    if (!hero) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) {
+            return;
+          }
+
+          if (hasEnteredRef.current) {
+            setHeroReplayKey((current) => current + 1);
+          }
+
+          hasEnteredRef.current = true;
+        });
+      },
+      {
+        threshold: 0.32,
+      },
+    );
+
+    observer.observe(hero);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   return (
-    <section id="top" className="meadow-hero relative isolate min-h-[100svh] w-full text-white md:h-[100svh]">
+    <section key={heroReplayKey} id="top" className="meadow-hero relative isolate min-h-[100svh] w-full text-white md:h-[100svh]">
       <MeadowMotionController />
       
       {/* 액자 프레임 배경 */}
