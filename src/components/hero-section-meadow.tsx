@@ -27,42 +27,80 @@ const bubbles = [
 ];
 
 function MeadowHeader() {
+  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
+  const lastScrollYRef = useRef(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY < 16) {
+        setIsHeaderVisible(true);
+        lastScrollYRef.current = currentScrollY;
+        return;
+      }
+
+      if (currentScrollY > lastScrollYRef.current) {
+        setIsHeaderVisible(false);
+      } else {
+        setIsHeaderVisible(true);
+      }
+
+      lastScrollYRef.current = currentScrollY;
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <header className="absolute inset-x-0 top-0 z-40 h-auto w-full text-white">
-      <Container className="flex h-16 items-center justify-between !px-4 min-[421px]:!px-6 md:h-28 md:!px-8 lg:!px-12">
-        <a href="#top" className="flex items-center focus-visible:rounded-md focus-visible:outline-2 focus-visible:outline-white">
-          <Image
-            src="/images/logo/coreluma-glitter-logo-flat.svg"
-            alt="Core Luma"
-            width={148}
-            height={24}
-            priority
-            className="h-4 w-auto min-[421px]:h-5 md:h-6"
-          />
-        </a>
-        <nav className="hidden rounded-full border border-white/18 bg-white/16 p-1 backdrop-blur-md lg:flex" aria-label="Main navigation">
-          <a href="#products" className="rounded-full bg-white px-5 py-3 text-sm font-semibold text-[#1764e8] shadow-sm xl:px-8">Products</a>
-          <a href="#about" className="rounded-full px-5 py-3 text-sm font-semibold text-white/92 transition hover:bg-white/10 xl:px-8">About</a>
-          <a href="#members" className="rounded-full px-5 py-3 text-sm font-semibold text-white/92 transition hover:bg-white/10 xl:px-8">Members</a>
-          <a href="#process" className="rounded-full px-5 py-3 text-sm font-semibold text-white/92 transition hover:bg-white/10 xl:px-8">Engineering</a>
-        </nav>
-        <a href="#contact" className="inline-flex items-center gap-1 rounded-full bg-white px-[0.9rem] py-2 text-[0.82rem] font-semibold text-[#1764e8] shadow-[0_12px_28px_rgba(32,88,170,0.16)] transition min-[421px]:px-[1.05rem] min-[421px]:py-[0.85rem] min-[421px]:text-[0.95rem] md:px-5 md:py-3 md:text-sm md:shadow-lg md:shadow-blue-800/10 hover:-translate-y-0.5">
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="size-4 shrink-0"
-            aria-hidden="true"
-          >
-            <rect x="3" y="5" width="18" height="14" rx="2" />
-            <path d="m3 7 9 6 9-6" />
-          </svg>
-          Contact
-        </a>
-      </Container>
+    <header
+      className={`fixed inset-x-0 top-0 z-[999] transition-transform duration-300 ${
+        isHeaderVisible ? "translate-y-0" : "-translate-y-full"
+      }`}
+    >
+      <div className="border-b border-white/12 bg-[linear-gradient(180deg,rgba(13,55,125,0.26),rgba(13,55,125,0.08))] px-3 py-3 backdrop-blur-md sm:px-4 md:px-6 lg:px-8">
+        <Container className="!px-0">
+          <div className="flex items-center justify-between gap-4">
+            <a href="#top" className="flex items-center focus-visible:rounded-md focus-visible:outline-2 focus-visible:outline-white">
+              <Image
+                src="/images/logo/coreluma-glitter-logo-flat.svg"
+                alt="Core Luma"
+                width={148}
+                height={24}
+                priority
+                className="h-4 w-auto min-[421px]:h-5 md:h-6"
+              />
+            </a>
+            <nav className="hidden rounded-full border border-white/18 bg-white/10 p-1 backdrop-blur-md lg:flex" aria-label="Main navigation">
+              <a href="#products" className="rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-[#1764e8] shadow-sm xl:px-8">Products</a>
+              <a href="#about" className="rounded-full px-5 py-2.5 text-sm font-semibold text-white/92 transition hover:bg-white/10 xl:px-8">About</a>
+              <a href="#members" className="rounded-full px-5 py-2.5 text-sm font-semibold text-white/92 transition hover:bg-white/10 xl:px-8">Members</a>
+              <a href="#process" className="rounded-full px-5 py-2.5 text-sm font-semibold text-white/92 transition hover:bg-white/10 xl:px-8">Engineering</a>
+            </nav>
+            <a href="#contact" className="inline-flex items-center gap-1 rounded-full bg-white px-[0.9rem] py-2 text-[0.82rem] font-semibold text-[#1764e8] shadow-[0_12px_28px_rgba(32,88,170,0.16)] transition min-[421px]:px-[1.05rem] min-[421px]:py-[0.85rem] min-[421px]:text-[0.95rem] md:px-5 md:py-3 md:text-sm md:shadow-lg md:shadow-blue-800/10 hover:-translate-y-0.5">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="size-4 shrink-0"
+                aria-hidden="true"
+              >
+                <rect x="3" y="5" width="18" height="14" rx="2" />
+                <path d="m3 7 9 6 9-6" />
+              </svg>
+              Contact
+            </a>
+          </div>
+        </Container>
+      </div>
     </header>
   );
 }
@@ -105,8 +143,10 @@ export function HeroSectionMeadow() {
   }, []);
 
   return (
-    <section key={heroReplayKey} id="top" className="meadow-hero relative isolate min-h-[100svh] w-full text-white md:h-[100svh]">
-      <MeadowMotionController />
+    <>
+      <MeadowHeader />
+      <section key={heroReplayKey} id="top" className="meadow-hero relative isolate min-h-[100svh] w-full text-white md:h-[100svh]">
+        <MeadowMotionController />
       
       {/* 액자 프레임 배경 */}
       <div className="meadow-bg-stage pointer-events-none absolute inset-0 z-0 h-full w-full overflow-clip" aria-hidden="true">
@@ -158,8 +198,6 @@ export function HeroSectionMeadow() {
       <div className="meadow-opening-light pointer-events-none absolute inset-0 z-30" aria-hidden="true" />
 
       <div className="meadow-content-scroll-container relative z-10 w-full md:h-[100svh]">
-        <MeadowHeader />
-        
         <Container className="meadow-content flex flex-col items-center pt-16 pb-0 md:h-[100svh] md:min-h-[100svh] md:pt-20 md:pb-10">
           
           {/* 
@@ -167,7 +205,7 @@ export function HeroSectionMeadow() {
             모바일에서 불필요하게 가상 높이를 만들던 min-h-[calc(100svh-5.5rem)]를 제거하고 h-auto로 변경했습니다.
             첫 뷰에서 자연스럽게 중앙 정렬되도록 패딩 배율(pt-16 pb-20)을 새로 고정했습니다.
           */}
-          <div className="meadow-intro relative z-1 flex h-auto min-h-0 w-full flex-none flex-col items-center justify-center pt-4 pb-4 text-center md:w-auto md:flex-1 md:translate-y-[clamp(0.4rem,2.5vh,1.5rem)] md:p-0">
+          <div className="meadow-intro relative z-1 flex h-auto min-h-0 w-full flex-none flex-col items-center justify-center pt-8 pb-4 text-center md:w-auto md:flex-1 md:translate-y-[clamp(0.4rem,2.5vh,1.5rem)] md:p-0">
             <InteractiveMeadowTitle />
             <p className="meadow-subtitle meadow-subtitle-entrance mt-[0.75rem] max-w-100 text-balance text-sm leading-[1.35] font-medium tracking-[-0.03em] text-white/92 drop-shadow-[0_2px_10px_rgba(54,113,181,0.22)] sm:text-base md:mt-0 md:max-w-none md:text-xl md:leading-normal lg:text-2xl">
               Building the core,
@@ -185,7 +223,7 @@ export function HeroSectionMeadow() {
           */}
           <div className="flex h-auto w-full shrink-0 items-center pt-4 pb-12 md:min-h-0 md:w-full md:shrink-1 md:items-stretch md:p-0 md:contents">
             <div className="meadow-process-panel relative z-12 grid w-full gap-7 rounded-[1.8rem] border border-white/75 bg-white/72 p-[clamp(1.35rem,8vw,2rem)] text-[#17386a] shadow-[0_28px_80px_rgba(39,75,132,0.17)] backdrop-blur-xl sm:grid-cols-2 md:mb-[clamp(1.5rem,4vw,3.5rem)] md:rounded-[2.1rem] md:p-8 lg:grid-cols-[1.7fr_repeat(4,1fr)]">
-              <div className="meadow-process-intro sm:col-span-2 lg:col-span-1">
+              <div className="meadow-process-intro sm:col-span-2 lg:col-span-1 mb-4 md:mb-0">
                 <h2 className="text-2xl font-semibold tracking-[-0.045em] text-[#152d52] sm:text-3xl">What we do</h2>
                 <p className="mt-4 max-w-sm text-sm leading-6 text-[#526582]">Core Luma is a two-person product studio. We design, build, and ship digital products that solve real problems and create meaningful experiences.</p>
               </div>
@@ -205,6 +243,7 @@ export function HeroSectionMeadow() {
 
         </Container>
       </div>
-    </section>
+      </section>
+    </>
   );
 }

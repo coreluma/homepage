@@ -37,7 +37,7 @@ const sections = [
 
 export default function Home() {
   return (
-    <main className="min-h-screen overflow-x-clip">
+    <main className="relative z-0 min-h-screen overflow-x-clip">
       <HeroSectionMeadow />
       <ProductsSection />
 

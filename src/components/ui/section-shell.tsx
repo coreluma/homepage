@@ -18,7 +18,7 @@ export function SectionShell({
   children,
 }: SectionShellProps) {
   return (
-    <section id={id} className="relative border-t border-[#164c91]/8 py-24 sm:py-32">
+    <section id={id} className="relative z-0 border-t border-[#164c91]/8 py-24 sm:py-32">
       <Container>
         <SectionHeading eyebrow={eyebrow} title={title} description={description} />
         {children ?? (
@@ -26,7 +26,7 @@ export function SectionShell({
             {[0, 1, 2].map((item) => (
               <div
                 key={item}
-                className="h-44 rounded-2xl border border-[#164c91]/10 bg-white/45 shadow-[0_18px_60px_-40px_rgba(38,97,170,0.35)] backdrop-blur-sm"
+                className="relative z-0 h-44 rounded-2xl border border-[#164c91]/10 bg-white/72 shadow-[0_18px_60px_-40px_rgba(38,97,170,0.35)]"
               />
             ))}
           </div>

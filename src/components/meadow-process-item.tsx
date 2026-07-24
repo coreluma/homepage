@@ -17,14 +17,25 @@ export function MeadowProcessItem({
   const itemRef = useRef<HTMLDivElement>(null);
   const [isMounted, setIsMounted] = useState(false);
   const [isFallbackVisible, setIsFallbackVisible] = useState(false);
+  const [isMobileViewport, setIsMobileViewport] = useState(false);
 
   useEffect(() => {
     let frame = 0;
     const initialScrollY = window.scrollY;
+    const mobileViewport = window.matchMedia("(max-width: 767px)");
+
+    const updateViewport = () => {
+      setIsMobileViewport(mobileViewport.matches);
+    };
 
     const updateVisibility = () => {
       frame = 0;
       setIsMounted(true);
+
+      if (!mobileViewport.matches) {
+        setIsFallbackVisible(true);
+        return;
+      }
 
       if (Math.abs(window.scrollY - initialScrollY) < 1) {
         return;
@@ -47,20 +58,31 @@ export function MeadowProcessItem({
       }
     };
 
+    updateViewport();
     frame = requestAnimationFrame(() => {
       frame = 0;
       setIsMounted(true);
     });
 
     window.addEventListener("scroll", requestVisibilityUpdate, { passive: true });
+    window.addEventListener("resize", updateViewport);
 
     return () => {
       cancelAnimationFrame(frame);
       window.removeEventListener("scroll", requestVisibilityUpdate);
+      window.removeEventListener("resize", updateViewport);
     };
   }, []);
 
   if (!isMounted) {
+    return (
+      <div ref={itemRef} className={`meadow-process-item ${className}`}>
+        {children}
+      </div>
+    );
+  }
+
+  if (!isMobileViewport) {
     return (
       <div ref={itemRef} className={`meadow-process-item ${className}`}>
         {children}
