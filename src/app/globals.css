@@ -32,6 +32,9 @@
 html {
   scroll-behavior: smooth;
   background: var(--background);
+  font-size: 13px;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
