@@ -1,5 +1,5 @@
 param(
-  [string]$HostName = "118.221.137.161",
+  [string]$HostName = "coreluma.kr",
   [int]$Port = 2222,
   [string]$UserName = "bobf",
   [string]$SiteRoot = "/var/www/coreluma",

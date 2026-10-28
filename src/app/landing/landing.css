@@ -1,0 +1,331 @@
+.landing-page {
+  --landing-ink: #05070d;
+  --landing-paper: #f4f6fb;
+  --landing-line: rgba(255, 255, 255, 0.1);
+  background: var(--landing-ink);
+  color: #fff;
+}
+
+.landing-serif {
+  font-family: var(--font-dm-serif-text), Georgia, "Times New Roman", serif;
+  font-weight: 400;
+}
+
+.landing-gradient-text {
+  color: transparent;
+  background: linear-gradient(100deg, #8fd3ff 0%, #4f9bff 38%, #8a7dff 72%, #d6a8ff 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.landing-hero {
+  background:
+    radial-gradient(circle at 50% 118%, rgba(56, 132, 255, 0.42), transparent 46%),
+    radial-gradient(circle at 82% 8%, rgba(132, 104, 255, 0.2), transparent 34%),
+    var(--landing-ink);
+}
+
+.landing-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: 88px 88px;
+  mask-image: radial-gradient(ellipse at 50% 40%, black 20%, transparent 75%);
+}
+
+.landing-orb-follow {
+  --orb-x: 0px;
+  --orb-y: 0px;
+  transform: translate3d(var(--orb-x), var(--orb-y), 0);
+  will-change: transform;
+  opacity: 0.88;
+}
+
+.landing-orb-glow {
+  background: radial-gradient(circle, rgba(79, 155, 255, 0.55), rgba(91, 61, 255, 0.25) 45%, transparent 70%);
+  filter: blur(40px);
+  animation: landing-orb-breathe 7s ease-in-out infinite;
+}
+
+.landing-hero-line {
+  display: block;
+  overflow: hidden;
+}
+
+.landing-hero-line > span {
+  display: block;
+  animation: landing-rise 1100ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.landing-fade-in {
+  animation: landing-fade 900ms ease-out both;
+}
+
+.landing-reveal {
+  opacity: 0;
+  transform: translateY(2.5rem);
+  transition:
+    opacity 900ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 900ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.landing-reveal[data-visible="true"] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.landing-service-row {
+  transition: background-color 400ms ease, color 400ms ease, padding 400ms ease;
+}
+
+.landing-service-row:hover {
+  background: #fff;
+  color: var(--landing-ink);
+}
+
+.landing-service-row:hover .landing-service-desc {
+  color: rgba(5, 7, 13, 0.65);
+}
+
+.landing-service-row:hover .landing-service-arrow {
+  transform: rotate(-45deg);
+  background: var(--landing-ink);
+  color: #fff;
+}
+
+.landing-service-arrow {
+  transition: transform 400ms cubic-bezier(0.16, 1, 0.3, 1), background-color 400ms ease, color 400ms ease;
+}
+
+.landing-work-surface {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    radial-gradient(circle at 22% 30%, rgba(var(--work-glow), 0.28), transparent 42%),
+    radial-gradient(circle at 90% 110%, rgba(var(--work-glow), 0.12), transparent 50%),
+    linear-gradient(180deg, #121729, #0b0e1a);
+  transition: border-color 500ms ease;
+}
+
+.landing-work-panel:hover .landing-work-surface {
+  border-color: rgba(var(--work-glow), 0.45);
+}
+
+.landing-work-logo {
+  filter: drop-shadow(0 18px 40px rgba(var(--work-glow), 0.25));
+  transition: transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.landing-work-panel:hover .landing-work-logo {
+  transform: translateY(-4px) rotate(-3deg);
+}
+
+.landing-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: landing-marquee 38s linear infinite;
+}
+
+.landing-marquee-track[data-reverse="true"] {
+  animation-direction: reverse;
+}
+
+@keyframes landing-rise {
+  from {
+    transform: translateY(105%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes landing-fade {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes landing-orb-breathe {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.06);
+  }
+}
+
+@keyframes landing-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .landing-reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.landing-page {
+  --landing-intro: 2700ms;
+}
+
+.landing-intro {
+  transition:
+    clip-path 900ms cubic-bezier(0.76, 0, 0.24, 1),
+    opacity 900ms ease;
+  clip-path: inset(0 0 0 0);
+}
+
+.landing-intro[data-leaving="true"] {
+  clip-path: inset(0 0 100% 0);
+  pointer-events: none;
+}
+
+.landing-intro-glow {
+  background: radial-gradient(circle, rgba(79, 155, 255, 0.28), rgba(138, 125, 255, 0.12) 40%, transparent 70%);
+  filter: blur(20px);
+  opacity: 0;
+  animation: landing-fade 1400ms ease-out 500ms both;
+}
+
+.landing-intro-caption {
+  animation: landing-fade 800ms ease-out 1300ms both;
+}
+
+.landing-wordmark-animated .landing-wordmark-letter {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: landing-letter-in 900ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.landing-wordmark-sparkle {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.landing-wordmark-animated .landing-wordmark-sparkle {
+  animation:
+    landing-sparkle-in 900ms cubic-bezier(0.34, 1.56, 0.64, 1) 1150ms both,
+    landing-sparkle-twinkle 2.4s ease-in-out 2050ms infinite;
+  filter: drop-shadow(0 0 30px rgba(191, 228, 255, 0.9));
+}
+
+@keyframes landing-letter-in {
+  from {
+    opacity: 0;
+    transform: translateY(40%) scaleY(1.15);
+    filter: blur(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scaleY(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes landing-sparkle-in {
+  from {
+    opacity: 0;
+    transform: scale(0) rotate(-180deg);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@keyframes landing-sparkle-twinkle {
+  0%,
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.25) rotate(45deg);
+  }
+}
+
+.landing-work-scroller {
+  scrollbar-width: none;
+}
+
+.landing-work-scroller::-webkit-scrollbar {
+  display: none;
+}
+
+/* The site root is 13px, which reads too small on phones; scale the landing page up there. */
+@media (max-width: 767px) {
+  html:has(.landing-page) {
+    font-size: 15px;
+  }
+}
+
+/* Fade only inside the swipe row: a vertical offset would overflow it and add a vertical scrollbar. */
+@media (max-width: 767px) {
+  .landing-work-scroller .landing-reveal {
+    transform: none;
+  }
+}
+
+.landing-member-portrait {
+  background:
+    radial-gradient(circle at 50% 78%, rgba(79, 155, 255, 0.22), transparent 55%),
+    linear-gradient(180deg, #151a2c, #0d1120);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+@media (min-width: 768px) {
+  .landing-works {
+    margin-inline: -0.6rem;
+  }
+
+  .landing-works .landing-work-panel {
+    flex: 1 1 0;
+    min-width: 0;
+    padding-inline: 0.6rem;
+    transition:
+      flex-grow 750ms cubic-bezier(0.65, 0, 0.35, 1),
+      padding 750ms cubic-bezier(0.65, 0, 0.35, 1),
+      opacity 450ms ease;
+  }
+
+  /* Hovering one panel folds the others away and lets it take the whole row. */
+  .landing-works:has(.landing-work-panel:hover) .landing-work-panel {
+    flex-grow: 0;
+    padding-inline: 0;
+    opacity: 0;
+  }
+
+  .landing-works:has(.landing-work-panel:hover) .landing-work-panel:hover {
+    flex-grow: 1;
+    padding-inline: 0.6rem;
+    opacity: 1;
+  }
+
+  .landing-work-detail {
+    opacity: 0;
+    transform: translateX(1.5rem);
+    pointer-events: none;
+    transition: opacity 300ms ease, transform 300ms ease;
+  }
+
+  /* The detail panel carries its own link, so the corner arrow steps aside. */
+  .landing-work-panel:hover .landing-work-arrow {
+    opacity: 0;
+  }
+
+  .landing-work-panel:hover .landing-work-detail {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 500ms ease 350ms, transform 600ms cubic-bezier(0.16, 1, 0.3, 1) 350ms;
+  }
+}
